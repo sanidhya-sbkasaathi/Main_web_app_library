@@ -13,6 +13,11 @@ const winUnpacked = path.join(releaseDir, 'win-unpacked');
 const publicDownloadsDir = path.resolve(__dirname, 'public/downloads');
 const distDownloadsDir = path.resolve(__dirname, 'dist/downloads');
 
+if (process.env.VERCEL || process.env.CI || !fs.existsSync(libraryAppDir)) {
+  console.log('⚡ Skipping Electron desktop packaging in Vercel/CI environment.');
+  process.exit(0);
+}
+
 console.log('📦 Step 1: Checking Standalone Desktop Installer...');
 const forceRebuild = process.argv.includes('--force') || process.argv.includes('--rebuild');
 
