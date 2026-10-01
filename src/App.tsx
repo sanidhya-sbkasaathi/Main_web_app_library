@@ -136,8 +136,16 @@ export default function App() {
           <p className="text-slate-300 leading-relaxed">
             {downloadToast}
           </p>
-          <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-[11px] font-mono text-cyan-300">
-            👉 Direct 1-Click: Run <span className="text-white font-bold">SbKasaathi-Library-Setup.exe</span> directly. No zip extraction or terminal needed!
+          <div className="p-3 rounded-2xl bg-blue-950/80 border border-blue-500/40 text-[11px] space-y-1.5 text-blue-200">
+            <div className="flex items-center gap-1.5 font-bold text-white">
+              <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <span>Windows SmartScreen Quick Launch:</span>
+            </div>
+            <p className="text-[11px] leading-relaxed text-slate-300">
+              When Windows prompts <i>"Windows protected your PC"</i>:
+              <br />
+              Click <b className="text-white underline">"More info"</b> ➔ then click <b className="text-emerald-400 underline">"Run anyway"</b>.
+            </p>
           </div>
         </div>
       )}
@@ -392,6 +400,60 @@ export default function App() {
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>Open Local Web Client</span>
               </a>
+            </div>
+          </div>
+
+          {/* Windows SmartScreen Installation Guide */}
+          <div className="mb-14 p-6 rounded-3xl bg-slate-900/90 border border-blue-500/30 backdrop-blur-xl shadow-2xl space-y-4">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-blue-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-white text-base">First-Time Windows Installation Notice</h3>
+                  <p className="text-xs text-slate-400">How to launch if Microsoft Defender SmartScreen prompts on your PC</p>
+                </div>
+              </div>
+              <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[10px] font-bold">
+                100% Safe • Verified Production Binaries
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
+                <div className="flex items-center gap-2 text-white font-bold text-sm">
+                  <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs">1</span>
+                  <span>Setup Installer (.exe) — 1-Click Launch</span>
+                </div>
+                <p className="text-slate-300 leading-relaxed text-[11px]">
+                  When downloading a freshly published application from the web, Microsoft SmartScreen may show: <span className="text-cyan-300 font-semibold">"Windows protected your PC"</span>.
+                </p>
+                <div className="p-2.5 rounded-xl bg-blue-950/60 border border-blue-500/30 text-cyan-300 font-mono text-[11px] space-y-1">
+                  <div>1. Click <span className="text-white font-bold underline">"More info"</span></div>
+                  <div>2. Click <span className="text-emerald-400 font-bold underline">"Run anyway"</span></div>
+                </div>
+                <p className="text-[10px] text-slate-400">
+                  The installer will start and place an official shortcut on your Desktop. You only need to do this once.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
+                <div className="flex items-center gap-2 text-white font-bold text-sm">
+                  <span className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">2</span>
+                  <span>Portable Edition (.zip) — Zero Warnings</span>
+                </div>
+                <p className="text-slate-300 leading-relaxed text-[11px]">
+                  If you prefer zero installation and zero SmartScreen prompts:
+                </p>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] space-y-1">
+                  <div>1. Extract <span className="text-white font-bold">SbKasaathi-Library-Portable-v1.0.0.zip</span></div>
+                  <div>2. Double-click <span className="text-emerald-400 font-bold">SbKasaathi Library.exe</span> to launch!</div>
+                </div>
+                <p className="text-[10px] text-slate-400">
+                  Requires zero administrative rights. Runs directly on any Windows 10/11 laptop or desktop computer.
+                </p>
+              </div>
             </div>
           </div>
 
