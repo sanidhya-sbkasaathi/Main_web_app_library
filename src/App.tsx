@@ -65,26 +65,50 @@ export default function App() {
     }));
   };
 
-  const handleDownloadInstaller = () => {
-    setDownloadToast("Downloading SbKasaathi Library Desktop Installer (SbKasaathi-Library-Setup.exe)... 1-Click single-file installer! Creates Desktop Shortcut, launches in dedicated app mode with zero extractions required.");
-    const link = document.createElement('a');
-    link.href = '/downloads/SbKasaathi-Library-Setup.exe';
-    link.setAttribute('download', 'SbKasaathi-Library-Setup.exe');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => setDownloadToast(null), 7000);
+  const handleDownloadInstaller = async () => {
+    setDownloadToast("Preparing SbKasaathi Library Desktop Installer (SbKasaathi-Library-Setup.exe)...");
+    try {
+      const probe = await fetch('/downloads/SbKasaathi-Library-Setup.exe', { method: 'HEAD' });
+      const contentType = probe.headers.get('content-type') || '';
+      if (probe.ok && !contentType.includes('text/html')) {
+        const link = document.createElement('a');
+        link.href = '/downloads/SbKasaathi-Library-Setup.exe';
+        link.setAttribute('download', 'SbKasaathi-Library-Setup.exe');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setDownloadToast("Downloading SbKasaathi Library Desktop Installer (119 MB)... 1-Click single-file installer! Creates Desktop Shortcut with dedicated app mode.");
+      } else {
+        setDownloadToast("Connecting to official Cloud Release mirror for Setup.exe (119 MB)...");
+        window.location.href = 'https://github.com/sanidhya-sbkasaathi/Library_app/releases/latest/download/SbKasaathi-Library-Setup.exe';
+      }
+    } catch {
+      window.location.href = 'https://github.com/sanidhya-sbkasaathi/Library_app/releases/latest/download/SbKasaathi-Library-Setup.exe';
+    }
+    setTimeout(() => setDownloadToast(null), 8000);
   };
 
-  const handleDownloadPortable = () => {
-    setDownloadToast("Downloading SbKasaathi Library Portable Edition (.zip)... No installation needed. Extract and double-click 'SbKasaathi-Library-App.vbs'.");
-    const link = document.createElement('a');
-    link.href = '/downloads/SbKasaathi-Library-Portable-v1.0.0.zip';
-    link.setAttribute('download', 'SbKasaathi-Library-Portable-v1.0.0.zip');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => setDownloadToast(null), 7000);
+  const handleDownloadPortable = async () => {
+    setDownloadToast("Preparing SbKasaathi Library Portable Edition (.zip)...");
+    try {
+      const probe = await fetch('/downloads/SbKasaathi-Library-Portable-v1.0.0.zip', { method: 'HEAD' });
+      const contentType = probe.headers.get('content-type') || '';
+      if (probe.ok && !contentType.includes('text/html')) {
+        const link = document.createElement('a');
+        link.href = '/downloads/SbKasaathi-Library-Portable-v1.0.0.zip';
+        link.setAttribute('download', 'SbKasaathi-Library-Portable-v1.0.0.zip');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setDownloadToast("Downloading SbKasaathi Library Portable Edition (169 MB)... No installation needed. Extract and double-click to launch.");
+      } else {
+        setDownloadToast("Connecting to official Cloud Release mirror for Portable .ZIP (169 MB)...");
+        window.location.href = 'https://github.com/sanidhya-sbkasaathi/Library_app/releases/latest/download/SbKasaathi-Library-Portable-v1.0.0.zip';
+      }
+    } catch {
+      window.location.href = 'https://github.com/sanidhya-sbkasaathi/Library_app/releases/latest/download/SbKasaathi-Library-Portable-v1.0.0.zip';
+    }
+    setTimeout(() => setDownloadToast(null), 8000);
   };
 
   return (
@@ -328,7 +352,7 @@ export default function App() {
                 className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition cursor-pointer shadow-md"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Download Setup.exe (12 MB)</span>
+                <span>Download Setup.exe (119 MB)</span>
               </button>
             </div>
 
@@ -353,7 +377,7 @@ export default function App() {
                 className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Download Portable .ZIP</span>
+                <span>Download Portable .ZIP (169 MB)</span>
               </button>
             </div>
 
